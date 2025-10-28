@@ -1,5 +1,6 @@
 package com.example.result_miniproject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ public class StudentDashboardActivity extends Activity {
     TextView tvWelcome;
     Button btnLogout;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
