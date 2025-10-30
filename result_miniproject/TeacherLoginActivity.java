@@ -79,7 +79,7 @@ public class TeacherLoginActivity extends AppCompatActivity {
                 if (dbHelper.isTeacherExists(username)) {
                     Toast.makeText(TeacherLoginActivity.this, "User already exists!", Toast.LENGTH_SHORT).show();
                 } else {
-                    boolean inserted = dbHelper.registerTeacher(username, password, "teacher@email.com");
+                    boolean inserted = dbHelper.registerTeacher(username, password);
                     if (inserted) {
                         Toast.makeText(TeacherLoginActivity.this, "Registration successful! You can now login.", Toast.LENGTH_LONG).show();
                     } else {

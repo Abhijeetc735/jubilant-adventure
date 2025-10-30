@@ -1,9 +1,8 @@
 package com.example.result_miniproject;
 
-
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,10 +10,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddStudentActivity extends AppCompatActivity {
-    EditText etName, etRoll, etClass;
-    Button btnSave;
-    SQLiteDatabase db;
 
+    EditText etName, etRoll, etClass, etUsername, etPassword;
+    Button btnSave;
+    AddStudentDB studentDbHelper; // ✅ Using new DB
+
+    @SuppressLint("MissingInflatedId")
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
@@ -22,40 +24,46 @@ public class AddStudentActivity extends AppCompatActivity {
         etName = findViewById(R.id.etName);
         etRoll = findViewById(R.id.etRoll);
         etClass = findViewById(R.id.etClass);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
         btnSave = findViewById(R.id.btnSave);
 
-        // Open DB connection (same DB as teachers)
-        //noinspection resource
-        TeacherDataHelper dbHelper = new TeacherDataHelper(this);
-        db = dbHelper.getWritableDatabase();
+        // ✅ Initialize new student database
+        studentDbHelper = new AddStudentDB(this);
 
-        btnSave.setOnClickListener(v -> {
-            String name = etName.getText().toString().trim();
-            String roll = etRoll.getText().toString().trim();
-            String studentClass = etClass.getText().toString().trim();
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etName.getText().toString().trim();
+                String roll = etRoll.getText().toString().trim();
+                String studentClass = etClass.getText().toString().trim();
+                String username = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
 
-            if (name.isEmpty() || roll.isEmpty() || studentClass.isEmpty()) {
-                Toast.makeText(AddStudentActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-                return;
-            }
+                if (name.isEmpty() || roll.isEmpty() || studentClass.isEmpty()
+                        || username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(AddStudentActivity.this,
+                            "Please fill all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            // Insert into student table
-            ContentValues values = new ContentValues();
-            values.put("name", name);
-            values.put("roll", roll);
-            values.put("class", studentClass);
+                boolean success = studentDbHelper.insertStudent(
+                        name, roll, studentClass, username, password
+                );
 
-            long result = db.insert("students", null, values);
-            if (result != -1) {
-                Toast.makeText(AddStudentActivity.this, "Student Added Successfully!", Toast.LENGTH_SHORT).show();
-                etName.setText("");
-                etRoll.setText("");
-                etClass.setText("");
-            } else {
-                Toast.makeText(AddStudentActivity.this, "Error Adding Student!", Toast.LENGTH_SHORT).show();
+                if (success) {
+                    Toast.makeText(AddStudentActivity.this,
+                            "Student added successfully!", Toast.LENGTH_SHORT).show();
+                    etName.setText("");
+                    etRoll.setText("");
+                    etClass.setText("");
+                    etUsername.setText("");
+                    etPassword.setText("");
+                } else {
+                    Toast.makeText(AddStudentActivity.this,
+                            "Student already exists or error occurred!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 }
-
-
