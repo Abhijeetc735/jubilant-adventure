@@ -28,6 +28,8 @@ public class TeacherDataHelper extends SQLiteOpenHelper {
                 + COLUMN_USERNAME + " TEXT UNIQUE, "
                 + COLUMN_PASSWORD + " TEXT)";
         db.execSQL(CREATE_TABLE);
+
+        // ❌ REMOVED: No default teacher - teachers register themselves
     }
 
     @Override
@@ -65,5 +67,53 @@ public class TeacherDataHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return valid;
+    }
+
+    // ✅ Change teacher password
+    public boolean changeTeacherPassword(String username, String oldPassword, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // First verify old password
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_TEACHER + " WHERE " +
+                        COLUMN_USERNAME + "=? AND " + COLUMN_PASSWORD + "=?",
+                new String[]{username, oldPassword});
+
+        boolean oldPasswordCorrect = cursor.moveToFirst();
+        cursor.close();
+
+        if (oldPasswordCorrect) {
+            // Old password is correct, update to new password
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_PASSWORD, newPassword);
+
+            int rowsAffected = db.update(TABLE_TEACHER, values,
+                    COLUMN_USERNAME + "=?", new String[]{username});
+
+            db.close();
+            return rowsAffected > 0;
+        } else {
+            db.close();
+            return false; // Old password is incorrect
+        }
+    }
+
+    // ✅ ADD THIS: Debug method to check current password
+    public String getCurrentPassword(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT " + COLUMN_PASSWORD + " FROM " + TABLE_TEACHER + " WHERE " + COLUMN_USERNAME + "=?",
+                new String[]{username});
+
+        if (cursor.moveToFirst()) {
+            String currentPassword = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PASSWORD));
+            cursor.close();
+            db.close();
+            return currentPassword;
+        } else {
+            cursor.close();
+            db.close();
+            return "User not found";
+        }
     }
 }

@@ -1,77 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddMarksActivity"
-    android:padding="24dp">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
 
     <TextView
-        android:id="@+id/tvTitleMarks"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Marks"
+        android:text="Add Student Marks"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp" />
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
 
-    <EditText
-        android:id="@+id/etRoll"
-        android:layout_width="0dp"
+    <!-- Student Selection -->
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Roll Number"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvTitleMarks"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
-        android:padding="12dp"
-        android:backgroundTint="#00BCD4" />
+        android:text="Select Student:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
 
-    <EditText
-        android:id="@+id/etSubject"
-        android:layout_width="0dp"
+    <Spinner
+        android:id="@+id/spinnerStudents"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Subject"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/etRoll"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:padding="12dp"
-        android:backgroundTint="#00BCD4" />
+        android:layout_marginBottom="20dp"
+        android:padding="19dp"
+        android:background="@drawable/edittext_background" />
 
-    <EditText
-        android:id="@+id/etMarks"
-        android:layout_width="0dp"
+    <!-- Subjects Table -->
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Marks Obtained"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/etSubject"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:padding="12dp"
-        android:backgroundTint="#00BCD4" />
+        android:text="Enter Marks for Subjects:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/tableSubjects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*" />
+
+        </HorizontalScrollView>
+
+    </ScrollView>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit Marks"
-        android:paddingHorizontal="40dp"
-        android:paddingVertical="10dp"
-        android:backgroundTint="#80BF33"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/etMarks"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp" />
+        android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnCalculate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save Marks"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back"
+            android:backgroundTint="#FF5722"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

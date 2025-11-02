@@ -76,6 +76,16 @@
             android:backgroundTint="#607D8B"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="12dp"/>
+        <Button
+            android:id="@+id/btnViewHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Help Requests"
+            android:backgroundTint="#E91E63"
+            android:textColor="@android:color/white"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

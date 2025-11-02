@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher_background"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Result_MiniProject">
+        <activity
+            android:name=".TeacherViewHelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudentHelpSupportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudentViewMarksActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StudentChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TeacherDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".StudentDashboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".StudentLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TeacherLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RoleSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddStudentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ReportsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AddMarksActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewMarksActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

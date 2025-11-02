@@ -6,17 +6,14 @@
     android:padding="16dp"
     android:background="#F5F5F5">
 
-    <!-- Header Title -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/view_student_marks"
+        android:text="View Student Marks"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#333333"
         android:gravity="center"
-        android:layout_marginBottom="20dp"
-        android:padding="8dp" />
+        android:layout_marginBottom="20dp" />
 
     <!-- Search Section -->
     <LinearLayout
@@ -30,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/enter_roll_number"
+            android:hint="Enter Roll Number"
             android:inputType="number"
             android:padding="12dp"
             android:background="@drawable/edittext_background"
@@ -40,49 +37,88 @@
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/search"
+            android:text="Search"
             android:backgroundTint="#2196F3"
             android:textColor="@android:color/white"
-            android:paddingHorizontal="20dp" />
+            android:paddingHorizontal="16dp" />
 
     </LinearLayout>
 
-    <!-- View All Button -->
-    <Button
-        android:id="@+id/btnViewAll"
+    <!-- Buttons -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/view_all_marks"
-        android:backgroundTint="#4CAF50"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="16dp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnViewAll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View All Marks"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back"
+            android:backgroundTint="#FF5722"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 
     <!-- No Data Message -->
-    <TextView
-        android:id="@+id/tvNoData"
+    <LinearLayout
+        android:id="@+id/noDataLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/no_marks_data_available"
-        android:textSize="18sp"
-        android:textColor="#666666"
+        android:orientation="vertical"
         android:gravity="center"
         android:padding="40dp"
-        android:visibility="gone" />
+        android:visibility="gone">
 
-    <!-- Marks Container -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No marks data available"
+            android:textSize="18sp"
+            android:textColor="#666666" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add marks using 'Add Marks' section"
+            android:textSize="14sp"
+            android:textColor="#999999"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+    <!-- Marks Table -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="Student marks list">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp">
 
-        <LinearLayout
-            android:id="@+id/marksContainer"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="4dp" />
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/tableMarks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*" />
+
+        </HorizontalScrollView>
+
     </ScrollView>
 
 </LinearLayout>

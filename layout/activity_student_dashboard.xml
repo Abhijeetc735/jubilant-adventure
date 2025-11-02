@@ -1,39 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F5F5F5"
+    android:gravity="center">
 
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
+    <TextView
+        android:id="@+id/tvWelcome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="24dp"
-        android:background="#FFFFFF">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="Welcome, Student"
+        android:textColor="#333333"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <!-- Welcome message -->
-        <TextView
-            android:id="@+id/tvWelcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome_student"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp"
-            android:textColor="#000000"/>
+    <Button
+        android:id="@+id/btnViewMarks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#2196F3"
+        android:padding="16dp"
+        android:text="View My Marks"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <!-- Logout button -->
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/logout"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#CE2222"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#4CAF50"
+        android:padding="16dp"
+        android:text="Change Password"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btnHelpSupport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#FF9800"
+        android:padding="16dp"
+        android:text="Help &amp; Support"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F44336"
+        android:paddingHorizontal="32dp"
+        android:text="Logout"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>

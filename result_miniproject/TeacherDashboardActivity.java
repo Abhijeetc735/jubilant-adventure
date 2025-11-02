@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class TeacherDashboardActivity extends AppCompatActivity {
 
     // Declare buttons
-    Button btnAddStudent, btnAddMarks, btnViewMarks, btnReports, btnSettings;
+    Button btnAddStudent, btnAddMarks, btnViewMarks, btnReports, btnViewHelp, btnSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         btnAddMarks = findViewById(R.id.btnAddMarks);
         btnViewMarks = findViewById(R.id.btnViewMarks);
         btnReports = findViewById(R.id.btnReports);
+        btnViewHelp = findViewById(R.id.btnViewHelp);
         btnSettings = findViewById(R.id.btnSettings);
 
         // Navigate to Add Student
@@ -55,6 +56,15 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TeacherDashboardActivity.this, ReportsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // ✅ NEW: Navigate to View Help Requests
+        btnViewHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TeacherDashboardActivity.this, TeacherViewHelpActivity.class);
                 startActivity(intent);
             }
         });
